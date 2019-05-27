@@ -1,0 +1,26 @@
+# Finally, something that worked https://medium.com/redbubble/running-a-docker-container-as-a-non-root-user-7d2e00f8ee15
+
+docker run --rm -it --net host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --workdir="/home/$USER" -v /home/$USER:/home/$USER -v $HOME/.config/google-chrome/:/data --name dockerContainer -it manish/experiment bash
+
+#docker container run --rm --privileged --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume $XAUTH:/root/.Xauthorit --workdir="/home/$USER" -v /home/$USER:/home/$USER -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro -v /etc/shadow:/etc/shadow:ro -v /etc/sudoers.d:/etc/sudoers.d:ro -v /tmp/.X11-unix:/tmp/.X11-unix:rw --name dockerContainer -it manish/experiment bash
+
+#docker container run -it manish/experiment bash
+#--user=$USER
+    #--env="DISPLAY" \
+    #--workdir="/home/$USER" \
+    #--volume="/home/$USER:/home/$USER" \
+    #--volume="/etc/group:/etc/group:ro" \
+    #--volume="/etc/passwd:/etc/passwd:ro" \
+    #--volume="/etc/shadow:/etc/shadow:ro" \
+    #--volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
+    #--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \   
+ 
+
+
+#sudo docker run  --env DISPLAY=unix$DISPLAY --privileged --volume $XAUTH:/root/.Xauthority --volume /tmp/.X11-unix:/tmp/.X11-unix  --rm --runtime=nvidia --rm -it -v /home/alex/coding:/coding  alexcpn/nvidia-cuda-grpc:1.0 bash
+
+
+#docker container run -it --rm --env "DISPLAY" --workdir="/home/$USER" -v /home/$USER:/home/$USER -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro -v /etc/shadow:/etc/shadow:ro -v /etc/sudoers.d:/etc/sudoers.d:ro -v /tmp/.X11-unix:/tmp/.X11-unix:rw --name dockerContainer manish/experiment bash
+
+#nvidia-docker run --rm --privileged --log-driver=syslog --cap-add=sys_nice --env="QT_GRAPHICSSYSTEM=opengl" --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" --net=host -p ::10245/tcp -p ::8765/tcp -p ::8766/tcp -p ::8765/udp -v $HOME/:$HOME/ -v /mnt/:/mnt/ -v /media/:/media/ --name $(whoami)_pf${UBUNTU_VERSION_ARCH}_terminal -it $(whoami)/pf${UBUNTU_VERSION_ARCH}
+
